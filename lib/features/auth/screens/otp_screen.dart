@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myrsaapp/common/utils/colors.dart';
+import 'package:myrsaapp/common/utils/textStyle.dart';
 import 'package:myrsaapp/features/auth/controller/auth_controller.dart';
 
 class OTPScreen extends ConsumerWidget {
@@ -37,6 +38,7 @@ class OTPScreen extends ConsumerWidget {
             SizedBox(
               width: size.width * 0.5,
               child: TextField(
+                style: text16(),
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
                   hintText: '- - - - - -',

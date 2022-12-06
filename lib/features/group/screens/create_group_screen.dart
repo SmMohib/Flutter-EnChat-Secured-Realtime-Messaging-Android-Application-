@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myrsaapp/common/utils/colors.dart';
+import 'package:myrsaapp/common/utils/textStyle.dart';
 import 'package:myrsaapp/features/group/controller/group_controller.dart';
 import 'package:myrsaapp/features/group/widgets/select_contacts_group.dart';
 
@@ -18,23 +19,23 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
   final TextEditingController groupNameController = TextEditingController();
   File? image;
 
-  void selectImage() async {
-   //image = await pickImageFromGallery(context);
-    setState(() {});
-  }
+  // void selectImage() async {
+  //  //image = await pickImageFromGallery(context);
+  //   setState(() {});
+  // }
 
-  void createGroup() {
-    if (groupNameController.text.trim().isNotEmpty && image != null) {
-      ref.read(groupControllerProvider).createGroup(
-            context,
-            groupNameController.text.trim(),
-            image!,
-            ref.read(selectedGroupContacts),
-          );
-      ref.read(selectedGroupContacts.state).update((state) => []);
-      Navigator.pop(context);
-    }
-  }
+  // void createGroup() {
+  //   if (groupNameController.text.trim().isNotEmpty && image != null) {
+  //     ref.read(groupControllerProvider).createGroup(
+  //           context,
+  //           groupNameController.text.trim(),
+  //           image!,
+  //           ref.read(selectedGroupContacts),
+  //         );
+  //     ref.read(selectedGroupContacts.state).update((state) => []);
+  //     Navigator.pop(context);
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -71,7 +72,8 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
                   bottom: -10,
                   left: 80,
                   child: IconButton(
-                    onPressed: selectImage,
+                    onPressed: () {},
+                    //  onPressed: selectImage,
                     icon: const Icon(
                       Icons.add_a_photo,
                     ),
@@ -82,6 +84,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
+                style: text16(),
                 controller: groupNameController,
                 decoration: const InputDecoration(
                   hintText: 'Enter Group Name',
@@ -104,8 +107,8 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: createGroup,
-        backgroundColor: tabColor,
+        onPressed: () {}, // onPressed: createGroup,
+        backgroundColor: buttonColor,
         child: const Icon(
           Icons.done,
           color: Colors.white,

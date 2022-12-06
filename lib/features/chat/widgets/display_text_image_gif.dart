@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:myrsaapp/common/enums/message_enum.dart';
+import 'package:myrsaapp/common/utils/colors.dart';
 import 'package:myrsaapp/features/chat/widgets/video_player_item.dart';
 
 class DisplayTextImageGIF extends StatelessWidget {
@@ -18,13 +19,11 @@ class DisplayTextImageGIF extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isPlaying = false;
     final AudioPlayer audioPlayer = AudioPlayer();
-
+//message text color
     return type == MessageEnum.text
         ? Text(
             message,
-            style: const TextStyle(
-              fontSize: 16,
-            ),
+            style: const TextStyle(fontSize: 16, color: blackColor),
           )
         : type == MessageEnum.audio
             ? StatefulBuilder(builder: (context, setState) {

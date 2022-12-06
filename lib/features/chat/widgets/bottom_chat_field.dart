@@ -1,11 +1,12 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'dart:io';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+//import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:myrsaapp/common/enums/message_enum.dart';
+import 'package:myrsaapp/common/utils/textStyle.dart';
 import 'package:myrsaapp/common/utils/utility.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -167,6 +168,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
           children: [
             Expanded(
               child: TextFormField(
+                style: text16(),
                 focusNode: focusNode,
                 controller: _messageController,
                 onChanged: (val) {
@@ -182,29 +184,29 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                 },
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: mobileChatBoxColor,
+                  fillColor: greyColor,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: SizedBox(
-                      width: 100,
+                      width: 1,
                       child: Row(
                         children: [
-                          IconButton(
-                            onPressed: () {},
-                            // onPressed: toggleEmojiKeyboardContainer,
-                            icon: const Icon(
-                              Icons.emoji_emotions,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            // onPressed: selectGIF,
-                            icon: const Icon(
-                              Icons.gif,
-                              color: Colors.grey,
-                            ),
-                          ),
+                          // IconButton(
+                          //   onPressed: () {},
+                          //   // onPressed: toggleEmojiKeyboardContainer,
+                          //   icon: const Icon(
+                          //     Icons.emoji_emotions,
+                          //     color: Colors.grey,
+                          //   ),
+                          // ),
+                          // IconButton(
+                          //   onPressed: () {},
+                          //   // onPressed: selectGIF,
+                          //   icon: const Icon(
+                          //     Icons.gif,
+                          //     color: Colors.grey,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -233,6 +235,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                       ],
                     ),
                   ),
+                  hintStyle: text16(),
                   hintText: 'Type a message!',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
@@ -269,25 +272,25 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
             ),
           ],
         ),
-        isShowEmojiContainer
-            ? SizedBox(
-                height: 310,
-                child: EmojiPicker(
-                  onEmojiSelected: ((category, emoji) {
-                    setState(() {
-                      _messageController.text =
-                          _messageController.text + emoji.emoji;
-                    });
+       // isShowEmojiContainer
+            // ? SizedBox(
+            //     height: 310,
+            //     child: EmojiPicker(
+            //       onEmojiSelected: ((category, emoji) {
+            //         setState(() {
+            //           _messageController.text =
+            //               _messageController.text + emoji.emoji;
+            //         });
 
-                    if (!isShowSendButton) {
-                      setState(() {
-                        isShowSendButton = true;
-                      });
-                    }
-                  }),
-                ),
-              )
-            : const SizedBox(),
+            //         if (!isShowSendButton) {
+            //           setState(() {
+            //             isShowSendButton = true;
+            //           });
+            //         }
+            //       }),
+            //     ),
+            //   )
+            
       ],
     );
   }

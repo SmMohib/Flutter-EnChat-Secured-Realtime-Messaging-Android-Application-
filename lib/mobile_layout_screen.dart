@@ -1,11 +1,19 @@
+// ignore_for_file: prefer_final_fields, prefer_const_constructors
+//import 'package:flutter_tutorial/widgets/exit-popup.dart';
+
+import 'dart:io';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myrsaapp/Screens/UserProfile/ProfilePage.dart';
 import 'package:myrsaapp/common/utils/colors.dart';
+import 'package:myrsaapp/common/utils/textStyle.dart';
 
 import 'package:myrsaapp/features/auth/controller/auth_controller.dart';
+import 'package:myrsaapp/features/chat/widgets/call_List.dart';
 import 'package:myrsaapp/features/group/screens/create_group_screen.dart';
+import 'package:myrsaapp/features/group/widgets/select_contacts_group.dart';
 import 'package:myrsaapp/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:myrsaapp/features/chat/widgets/contacts_list.dart';
 import 'package:myrsaapp/features/status/screens/status_contacts_screen.dart';
@@ -28,7 +36,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen> {
     ),
     MyRoute(
       iconData: Icons.call,
-      page: Text('1'),
+      page: CallList(),
     ),
     MyRoute(
       iconData: Icons.add,
@@ -36,7 +44,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen> {
     ),
     MyRoute(
       iconData: Icons.people,
-      page: Text('1'),
+      page: CreateGroupScreen(),
     ),
     MyRoute(
       iconData: Icons.person,
@@ -46,38 +54,91 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // endDrawer: new MyEndDrawer(),
-      bottomNavigationBar: CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        index: 0,
-        height: 60.0,
-        items: pages
-            .map(
-              (p) => Icon(
-                p.iconData,
-                size: 30,
-                color: Colors.white,
+    Future<bool> showExitPopup(context) async {
+      return await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Container(
+                height: 100,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Do you want to exit?",
+                      style: text16(),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              print('yes selected');
+                              exit(0);
+                            },
+                            child: Text("Yes"),
+                            style:
+                                ElevatedButton.styleFrom(primary: buttonColor),
+                          ),
+                        ),
+                        SizedBox(width: 15),
+                        Expanded(
+                            child: ElevatedButton(
+                          onPressed: () {
+                            print('no selected');
+                            Navigator.of(context).pop();
+                          },
+                          child:
+                              Text("No", style: TextStyle(color: Colors.black)),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                          ),
+                        ))
+                      ],
+                    )
+                  ],
+                ),
               ),
-            )
-            .toList(),
-        // color: Color(0xff4367b1),
-        color: appBarColor,
-        buttonBackgroundColor: appBarColor,
-        //buttonBackgroundColor: Color(0xff4367b1),
-        backgroundColor: backgroundColor,
-        animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 500),
-        onTap: (index) {
-          setState(
-            () {
-              _pageIndex = index;
-            },
-          );
-        },
+            );
+          });
+    }
+
+    return WillPopScope(
+      onWillPop: () => showExitPopup(context),
+      child: Scaffold(
+        // endDrawer: new MyEndDrawer(),
+        bottomNavigationBar: CurvedNavigationBar(
+          key: _bottomNavigationKey,
+          index: 0,
+          height: 60.0,
+          items: pages
+              .map(
+                (p) => Icon(
+                  p.iconData,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              )
+              .toList(),
+          // color: Color(0xff4367b1),
+          color: appBarColor,
+          buttonBackgroundColor: appBarColor,
+          //buttonBackgroundColor: Color(0xff4367b1),
+          backgroundColor: whiteColor,
+          animationCurve: Curves.easeInOut,
+          animationDuration: Duration(milliseconds: 500),
+          onTap: (index) {
+            setState(
+              () {
+                _pageIndex = index;
+              },
+            );
+          },
+        ),
+        backgroundColor: Colors.white,
+        body: pages[_pageIndex].page,
       ),
-      backgroundColor: Colors.white,
-      body: pages[_pageIndex].page,
     );
   }
 }
@@ -222,4 +283,3 @@ class MyRoute {
 //     );
 //   }
 // }
-

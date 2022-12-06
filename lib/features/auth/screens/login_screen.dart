@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myrsaapp/common/utils/colors.dart';
 import 'package:myrsaapp/common/utils/snakbar.dart';
+import 'package:myrsaapp/common/utils/textStyle.dart';
 import 'package:myrsaapp/common/widgets/custom_button.dart';
 import 'package:myrsaapp/features/auth/controller/auth_controller.dart';
 
@@ -53,7 +54,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       appBar: AppBar(
         title: const Text('Enter your phone number'),
         elevation: 0,
-        backgroundColor: backgroundColor,
+        backgroundColor: appBarColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -61,7 +62,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('RSA Chating will need to verify your phone number.'),
+              const Text('We need to verify your phone number.'),
               const SizedBox(height: 10),
               TextButton(
                 onPressed: pickCountry,
@@ -75,6 +76,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   SizedBox(
                     width: size.width * 0.7,
                     child: TextField(
+                      style: text16(),
                       controller: phoneController,
                       decoration: const InputDecoration(
                         hintText: 'phone number',

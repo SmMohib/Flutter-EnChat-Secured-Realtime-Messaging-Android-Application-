@@ -1,8 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myrsaapp/common/utils/colors.dart';
+import 'package:myrsaapp/common/utils/textFilld.dart';
+import 'package:myrsaapp/common/utils/textStyle.dart';
+import 'package:myrsaapp/common/widgets/custom_button.dart';
 import 'package:myrsaapp/common/widgets/loader.dart';
 import 'package:myrsaapp/features/auth/controller/auth_controller.dart';
 import 'package:myrsaapp/features/call/controller/call_controller.dart';
@@ -20,13 +25,25 @@ class MobileChatScreen extends ConsumerWidget {
   final String uid;
   //final bool isGroupChat;
   final String profilePic;
-  const MobileChatScreen({
+  MobileChatScreen({
     Key? key,
     required this.name,
     required this.uid,
-    // required this.isGroupChat,
+    //  required this.isGroupChat,
     required this.profilePic,
   }) : super(key: key);
+  //
+  final _text = TextEditingController();
+
+  bool _validate = false;
+
+  @override
+  void dispose() {
+    _text.dispose();
+    //super.dispose();
+  }
+
+  final _formKey = GlobalKey<FormState>();
 
   // void makeCall(WidgetRef ref, BuildContext context) {
   //   ref.read(callControllerProvider).makeCall(
@@ -99,6 +116,7 @@ class MobileChatScreen extends ConsumerWidget {
     //   ),
     // );
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: StreamBuilder<UserModel>(
@@ -111,13 +129,13 @@ class MobileChatScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name),
-                //  Text(
-                //    snapshot.data!.isOnline ? 'Online' : 'Offline',
-                //     style: const TextStyle(
-                //       fontSize: 13,
-                //       fontWeight: FontWeight.normal,
-                //     ),
-                //   ),
+                   Text(
+                     snapshot.data!.isOnline ? 'Online' : 'Offline',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
                 ],
               );
             }),
@@ -137,55 +155,111 @@ class MobileChatScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          ////Encrepted
-          Container(
-              height: 50,
-              child: Center(
-                  child: DialogButton(
-                onPressed: () {
-                  Alert(
-                    context: context,
-                    type: AlertType.warning,
-                    title: "Congratulation",
-                    desc: "Your account Active.Your Private "
-                        " key Is : 1234  Please Don't Sheare anyone",
-                    buttons: [
-                      DialogButton(
-                          child: Text(
-                            "OK",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          onPressed: () {}
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: ((context) => RsaMobileChatScreen(
-                          //             name: name, uid: uid))
-                               //       ))
-                                      ),
-                    ],
-                  ).show();
-                },
-                child: Text(
-                  "Encrepted",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                color: appBarColor,
-              ))),
-          // Expanded(
-          //     child: Column(
-          //   children: [],
-          // )),
-          Expanded(
-            child: ChatList(recieverUserId: uid, )
-          ),
-          BottomChatField(
-            recieverUserId: uid,
-            isGroupChat: name.isEmpty,
-          )
-        ],
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            ////Encrepted
+            // Container(
+            //     height: 50,
+            //     child: Center(
+            //         child: DialogButton(
+            //       highlightColor: Colors.white,
+            //       splashColor: webAppBarColor,
+            //       onPressed: () {
+            //         Alert(
+            //           context: context,
+            //           type: AlertType.warning,
+            //           //title: "Congratulation",
+            //           desc: "Don't share private keys with anyone ",
+            //           content: Column(
+            //               // ignore: prefer_const_literals_to_create_immutables
+            //               children: [
+            //                 TextFormField(
+            //                     controller: _text,
+            //                     style: text20(),
+            //                     validator: (_text) {
+            //                       if (_text == null || _text.isEmpty) {
+            //                         return 'Text is empty';
+            //                       }
+            //                       return null;
+            //                     },
+            //                     decoration:
+            //                         InputDecoration(hintText: 'Private key')
+
+            //                     // TextFiledDemo(name: name,profilePic:profilePic ,uid: uid),
+            //                     // TextField(
+            //                     //   controller: _text,
+            //                     //   decoration: InputDecoration(
+            //                     //     icon: Icon(Icons.lock),
+            //                     //     labelStyle: text20(),
+            //                     //     labelText: 'Enter the Value',
+            //                     //     errorText:
+            //                     //         _validate ? 'Value Can\'t Be Empty' : null,
+            //                     //   ),
+            //                     //   obscureText: true,
+            //                     // ),
+
+            //                     ),
+            //               ]),
+            //           buttons: [
+            //             DialogButton(
+            //                 child: Text(
+            //                   "Cancel",
+            //                   style:
+            //                       TextStyle(color: Colors.white, fontSize: 20),
+            //                 ),
+            //                 onPressed: () {
+            //                   Navigator.pop(context);
+            //                 }),
+            //             DialogButton(
+            //                 child: Text(
+            //                   "OK",
+            //                   style:
+            //                       TextStyle(color: Colors.white, fontSize: 20),
+            //                 ),
+            //                 onPressed: () {
+            //                   if (_formKey.currentState!.validate()) {
+            //                     Navigator.push(
+            //                         context,
+            //                         MaterialPageRoute(
+            //                             builder: ((context) =>
+            //                                 RsaMobileChatScreen(
+            //                                   profilePic: profilePic,
+            //                                   name: name,
+            //                                   uid: uid,
+            //                                 ))));
+
+            //                     // TODO submit
+            //                   }
+            //                 }),
+            //           ],
+            //         ).show();
+            //       },
+            //       child: Text(
+            //         "Encrepted",
+            //         style: TextStyle(color: Colors.white, fontSize: 20),
+            //       ),
+            //       color: appBarColor,
+            //     ))),
+            // Expanded(
+            //     child: Column(
+            //   children: [],
+            // )),
+            Expanded(
+                child: ChatList(
+              recieverUserId: uid,
+            )),
+            // Expanded(
+            //     child: ChatList(
+            //   recieverUserId: uid,
+            // )),
+            BottomChatField(
+              recieverUserId: uid,
+              isGroupChat: name.isEmpty,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myrsaapp/common/providers/message_reply_provider.dart';
+import 'package:myrsaapp/common/utils/colors.dart';
 import 'package:myrsaapp/features/chat/widgets/display_text_image_gif.dart';
 
 class MessageReplyPreview extends ConsumerWidget {
@@ -32,8 +33,7 @@ class MessageReplyPreview extends ConsumerWidget {
                 child: Text(
                   messageReply!.isMe ? 'Me' : 'Opposite',
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontWeight: FontWeight.bold, color: appBarColor),
                 ),
               ),
               GestureDetector(

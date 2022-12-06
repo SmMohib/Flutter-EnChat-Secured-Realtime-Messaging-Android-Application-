@@ -1,22 +1,48 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:myrsaapp/common/utils/colors.dart';
+import 'package:myrsaapp/common/utils/textStyle.dart';
 import 'package:myrsaapp/common/widgets/loader.dart';
+import 'package:myrsaapp/features/auth/screens/login_screen.dart';
 import 'package:myrsaapp/features/chat/controller/chat_controller.dart';
 import 'package:myrsaapp/features/chat/screens/mobile_chat_screen.dart';
+import 'package:myrsaapp/features/chatroom/authScreen.dart';
+import 'package:myrsaapp/features/chatroom/chatScreen.dart';
+import 'package:myrsaapp/features/chatroom/joinRoom.dart';
+import 'package:myrsaapp/features/encriptionchat/createprivatekey.dart';
 import 'package:myrsaapp/models/chat_contact.dart';
 import 'package:myrsaapp/models/group.dart';
 
 class ContactsList extends ConsumerWidget {
-  const ContactsList({Key? key}) : super(key: key);
-
+  ContactsList({Key? key}) : super(key: key);
+  String? _selectedMenu = '';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Chat'),
-      ),
+      appBar: AppBar(title: Text('Chat'), actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.search,
+          ),
+        ),
+        // IconButton(
+        //   icon: Icon(Icons.lock),
+        //   onPressed: () {
+        //     Navigator.push(context,
+        //         MaterialPageRoute(builder: ((context) => AuthScreen())));
+        //   },
+        // ),
+        IconButton(
+          icon: Icon(Icons.lock),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => CreatePrivateKey())));
+          },
+        ),
+      ]),
       body: Padding(
         padding: const EdgeInsets.only(top: 5),
         child: SingleChildScrollView(
@@ -68,8 +94,9 @@ class ContactsList extends ConsumerWidget {
                                   ),
                                   leading: CircleAvatar(
                                     backgroundImage: NetworkImage(
-                                      groupData.groupPic,
-                                    ),
+                                       // 'http://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'
+                                         groupData.groupPic,
+                                        ),
                                     radius: 30,
                                   ),
                                   trailing: Text(
@@ -139,9 +166,10 @@ class ContactsList extends ConsumerWidget {
                                     ),
                                   ),
                                   leading: CircleAvatar(
+                                    backgroundColor: greyColor,
                                     backgroundImage: NetworkImage(
-                                      chatContactData.profilePic,
-                                    ),
+                                         chatContactData.profilePic,
+                                        ),
                                     radius: 30,
                                   ),
                                   trailing: Text(
@@ -155,9 +183,9 @@ class ContactsList extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            const Divider(
-                              color: dividerColor,
-                            ),
+                            // const Divider(
+                            //   color: dividerColor,
+                            // ),
                           ],
                         );
                       },

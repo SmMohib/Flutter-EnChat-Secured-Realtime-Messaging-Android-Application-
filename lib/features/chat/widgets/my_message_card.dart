@@ -43,7 +43,8 @@ class MyMessageCard extends StatelessWidget {
             elevation: 1,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            color: messageColor,
+            //my messege color
+            color: buttonColor,
             margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: Stack(
               children: [
@@ -67,6 +68,7 @@ class MyMessageCard extends StatelessWidget {
                         Text(
                           username,
                           style: const TextStyle(
+                            color: appBarColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
