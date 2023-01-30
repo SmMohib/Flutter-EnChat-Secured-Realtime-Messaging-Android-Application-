@@ -2,11 +2,7 @@
 
 A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-# ![WebApp](https://iharsh234.github.io/WebApp/images/demo/demo_landing.JPG)
 # WebApp
 <table>
 <tr>
@@ -16,15 +12,6 @@ This project is a starting point for a Flutter application.
 </tr>
 </table>
 
-
-## Demo
-Here is a working live demo :  https://iharsh234.github.io/WebApp/
-
-
-## Site
-
-### Landing Page
-Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
 
 ![](https://github.com/SmMohib/Flutter-EnChat-Secured-Realtime-Messaging-Android-Application-/blob/main/aa.jpg)
 
