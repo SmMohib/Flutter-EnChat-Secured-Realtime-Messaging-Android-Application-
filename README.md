@@ -19,12 +19,7 @@ A new Flutter project.
 ## Mobile support
 The WebApp is compatible with devices of all sizes and all IOS's, and consistent improvements are being made.
 
-![](https://iharsh234.github.io/WebApp/images/demo/mobile.png)
 
-
-
-
-## [Usage](https://iharsh234.github.io/WebApp/) 
 
 ### Development
 Want to contribute? Great!
