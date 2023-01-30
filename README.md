@@ -32,9 +32,9 @@ Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol wil
 ![](https://iharsh234.github.io/WebApp/images/demo/demo_query.JPG)
 
 ### Charts
-![](https://iharsh234.github.io/WebApp/images/demo/demo_chart1.JPG)
+<!-- ![](https://iharsh234.github.io/WebApp/images/demo/demo_chart1.JPG)
 ![](https://iharsh234.github.io/WebApp/images/demo/demo_chart2.JPG)
-![](https://iharsh234.github.io/WebApp/images/demo/demo_chart3.JPG)
+![](https://iharsh234.github.io/WebApp/images/demo/demo_chart3.JPG) -->
 
 
 ## Mobile support
@@ -81,7 +81,7 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 ## Team
 
-[![Harsh Vijay](https://avatars1.githubusercontent.com/u/12688534?v=3&s=144)](https://github.com/iharsh234)  | [![Quandl.com](https://github.com/iharsh234/WebApp/blob/master/images/quandl.jpg)](https://www.quandl.com/)
+[![SM Mohib]([https://avatars1.githubusercontent.com/u/12688534?v=3&s=144](https://avatars.githubusercontent.com/u/79123931?v=4))]([https://github.com/iharsh234](https://github.com/SmMohib)  | [![Sm Mohib](https://github.com/iharsh234/WebApp/blob/master/images/quandl.jpg)](https://www.quandl.com/)
 ---|---
 [Harsh Vijay ](https://github.com/iharsh234) |[Quandl](https://www.quandl.com)
 
